@@ -1,13 +1,14 @@
 const RETORNO_MIN = 72; // 1h12 em minutos
 
+const form = document.getElementById('form');
 const input = document.getElementById('batida');
 const btnAgora = document.getElementById('btn-agora');
 const resultado = document.getElementById('resultado');
 const horaRetorno = document.getElementById('hora-retorno');
 const detalhe = document.getElementById('detalhe');
 
-function calcularRetorno(batida) {
-  const [h, m] = batida.split(':').map(Number);
+function calcularRetorno(hhmm) {
+  const [h, m] = hhmm.split(':').map(Number);
   const total = h * 60 + m + RETORNO_MIN;
   const viraDia = total >= 1440;
   const final = total % 1440;
@@ -16,19 +17,43 @@ function calcularRetorno(batida) {
   return { texto: `${hh}:${mm}`, viraDia };
 }
 
+// Mantém só dígitos (máx. 4). Hora começando com 3-9 ganha o 0 na frente: "930" -> 09:30.
+function normalizar(texto) {
+  let d = texto.replace(/\D/g, '').slice(0, 4);
+  if (d && +d[0] > 2) d = '0' + d;
+  return d.slice(0, 4);
+}
+
+function formatar(d) {
+  if (d.length <= 2) return d;
+  return `${d.slice(0, 2)}:${d.slice(2)}`;
+}
+
+function horaValida(d) {
+  if (d.length !== 4) return false;
+  return +d.slice(0, 2) <= 23 && +d.slice(2) <= 59;
+}
+
 function atualizar() {
-  const valor = input.value;
-  if (!valor) {
+  const d = normalizar(input.value);
+  input.value = formatar(d);
+
+  if (!horaValida(d)) {
+    input.classList.toggle('invalid', d.length === 4);
     resultado.classList.add('oculto');
     return;
   }
-  const { texto, viraDia } = calcularRetorno(valor);
+  input.classList.remove('invalid');
+
+  const { texto, viraDia } = calcularRetorno(input.value);
   horaRetorno.textContent = texto;
   detalhe.textContent = viraDia
-    ? `1h12 depois de ${valor} — já passou da meia-noite`
-    : `1h12 depois de ${valor}`;
+    ? `1h12 depois de ${input.value} — já passou da meia-noite`
+    : `1h12 depois de ${input.value}`;
   resultado.classList.remove('oculto');
 }
+
+form.addEventListener('submit', (e) => e.preventDefault());
 
 btnAgora.addEventListener('click', () => {
   const agora = new Date();

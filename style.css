@@ -6,6 +6,7 @@
   --texto-suave: #9aa1b2;
   --acento: #4f9cff;
   --ok: #3ddc97;
+  --erro: #ff6b6b;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -50,7 +51,7 @@ label {
 
 .linha { display: flex; gap: 0.5rem; }
 
-input[type="time"] {
+#batida {
   flex: 1;
   font-size: 1.6rem;
   font-variant-numeric: tabular-nums;
@@ -63,7 +64,9 @@ input[type="time"] {
   outline: none;
 }
 
-input[type="time"]:focus { border-color: var(--acento); }
+#batida:focus { border-color: var(--acento); }
+
+#batida.invalid { border-color: var(--erro); }
 
 button {
   font-size: 0.95rem;
