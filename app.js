@@ -62,3 +62,6 @@ btnAgora.addEventListener('click', () => {
 });
 
 input.addEventListener('input', atualizar);
+
+// Ao focar, seleciona tudo para redigitar sem apagar na mão
+input.addEventListener('focus', () => input.select());
