@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>Retorno do Ponto · +1h12</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Retorno do ponto</h1>
+    <p class="sub">Batida + 1h12 — nada é salvo, é só consulta.</p>
+
+    <form id="form" autocomplete="off">
+      <label for="batida">Horário da batida</label>
+      <div class="linha">
+        <input
+          id="batida"
+          type="time"
+          step="60"
+          inputmode="numeric"
+          placeholder="00:00"
+          autofocus
+        >
+        <button type="button" id="btn-agora" title="Preenche com o horário atual">Agora</button>
+      </div>
+    </form>
+
+    <div id="resultado" class="resultado oculto" aria-live="polite">
+      <span class="rotulo">Volte às</span>
+      <span class="hora" id="hora-retorno">--:--</span>
+      <span class="detalhe" id="detalhe"></span>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

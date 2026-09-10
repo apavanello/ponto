@@ -1,0 +1,105 @@
+:root {
+  --bg: #0f1115;
+  --card: #181b22;
+  --borda: #2a2f3a;
+  --texto: #e8eaf0;
+  --texto-suave: #9aa1b2;
+  --acento: #4f9cff;
+  --ok: #3ddc97;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  padding: 1rem;
+}
+
+.card {
+  width: min(92vw, 30rem);
+  background: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 { font-size: 1.4rem; font-weight: 600; }
+
+.sub {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  margin: 0.5rem 0 1.75rem;
+}
+
+form { text-align: left; }
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.linha { display: flex; gap: 0.5rem; }
+
+input[type="time"] {
+  flex: 1;
+  font-size: 1.6rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  padding: 0.6rem 0.5rem;
+  color: var(--texto);
+  background: var(--bg);
+  border: 1px solid var(--borda);
+  border-radius: 0.6rem;
+  outline: none;
+}
+
+input[type="time"]:focus { border-color: var(--acento); }
+
+button {
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0 1.1rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--borda);
+  background: var(--bg);
+  color: var(--texto);
+  cursor: pointer;
+}
+
+button:hover { border-color: var(--acento); color: var(--acento); }
+
+.resultado {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.resultado.oculto { visibility: hidden; }
+
+.rotulo {
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hora {
+  font-size: clamp(4rem, 18vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ok);
+}
+
+.detalhe { font-size: 0.85rem; color: var(--texto-suave); }
